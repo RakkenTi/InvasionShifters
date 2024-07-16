@@ -1,0 +1,19 @@
+{
+
+    "[lua]": {
+        "editor.defaultFormatter": "JohnnyMorganz.stylua",
+        "editor.tabCompletion": "on",
+        "editor.formatOnSave": true,
+    },
+
+    "[luau]": {
+        "editor.defaultFormatter": "JohnnyMorganz.stylua",
+        "editor.tabCompletion": "on",
+        "editor.formatOnSave": true,
+    },
+
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#c639798e",
+        "editor.selectionHighlightBackground": "#c639798e",
+    }
+}

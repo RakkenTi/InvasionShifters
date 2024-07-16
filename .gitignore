@@ -1,0 +1,13 @@
+# Project place file
+/RbxLib.rbxlx
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+# Testing files
+src/ServerScriptService
+src/StarterPlayerScripts
+#.vscode
+#.luaurc
+#selene

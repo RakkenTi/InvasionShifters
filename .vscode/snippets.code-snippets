@@ -1,0 +1,112 @@
+{
+	// Place your RbxLib workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	// Services
+
+	"Insert ReplicatedStorage": {
+		"prefix": "_ReplicatedStorage",
+		"body": [
+			"local ReplicatedStorage = game:GetService('ReplicatedStorage')"
+		],
+	},
+
+	"Insert CollectionService": {
+		"prefix": "_CollectionService",
+		"body": [
+			"local CollectionService = game:GetService('CollectionService')"
+		],
+	},
+
+	
+	"Insert InsertService": {
+		"prefix": "_InsertService",
+		"body": [
+			"local InsertService = game:GetService('InsertService')"
+		],
+	},
+
+	"Insert Players": {
+		"prefix": "_Players",
+		"body": [
+			"local Players = game:GetService('Players')"
+		],
+	},
+
+	"Insert TweenService": {
+		"prefix": "_TweenService",
+		"body": [
+			"local TweenService = game:GetService('TweenService')"
+		],
+	},
+
+	"Insert RunService": {
+		"prefix": "_RunService",
+		"body": [
+			"local RunService = game:GetService('RunService')"
+		],
+	},
+
+	"Insert HttpService": {
+		"prefix": "_HttpService",
+		"body": [
+			"local HttpService = game:GetService('HttpService')"
+		],
+	},
+
+	// Misc
+
+	"Insert a header": {
+		"prefix": "header",
+		"body": [
+			"--~~/// [[ $0 ]] ///~~--"
+		],
+		"description": "Inserts a header using luau comments."
+	},
+
+	"Insert a subheader": {
+		"prefix": "subheader",
+		"body": [
+			"--~~[[ $0 ]]~~--"
+		],
+		"description": "Inserts a subheader using luau comments."
+	},
+
+	"Insert a boilerplate": {
+		"prefix": "rbxboilerplate",
+		"body": [
+			"--[[\n\n\n\n]]\n\n--// Services\n\n--// Modules\n\n--// Module-Constants\n\n--// Variables\n\n--// Main"
+		],
+		"description": "Insert a boilerplate description of a script using comments."
+	},
+
+	"Type annotation comment": {
+		"prefix": "describe",
+		"body": [
+			"--[=[\n\n$0\n\n]=]"
+		],
+		"description": "Insert a description"
+	},
+
+	"Insert a boilerplate for module scripts": {
+		"prefix": "rbxmoduleboilerplate",
+		"body": [
+			"--[[\n\n\n\n]]\n\n--// Services\n\n--// Modules\n\n--// Module-Constants\n\n--// Variables\n\n--// Main\n\n--[[ Private Functions ]]--\n\n--[[ Public Functions ]]--"
+		],
+		"description": "Insert a boilerplate description of a module-script using comments."
+	}
+}
