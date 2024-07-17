@@ -101,13 +101,8 @@ local function Transform(player: Player, ShifterName: string, TitanModel: Model)
 	TransformationSFX.Impact:Play()
 	TransformationSFX.Strike:Play()
 
-	local scale = 0
-
 	local connection
 	connection = RunService.RenderStepped:Connect(function(delta: number)
-		scale += delta
-		scale = math.clamp(scale, 0.0001, 1)
-		warn(scale)
 		TransformationParticles:PivotTo(CFrame.new(HumanoidRootPart.Position))
 	end)
 	TransformationParticles.Parent = game.Workspace
