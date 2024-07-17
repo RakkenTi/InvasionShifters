@@ -1,5 +1,13 @@
 {
 
+    "luau-lsp.completion.addParentheses": true,
+    "luau-lsp.completion.autocompleteEnd": true,
+    "luau-lsp.completion.fillCallArguments": false,
+    "luau-lsp.require.mode": "relativeToFile",
+    "luau-lsp.require.directoryAliases": {
+    "@lune/": "~/.lune/.typedefs/0.8.6/"
+    },
+    
     "[lua]": {
         "editor.defaultFormatter": "JohnnyMorganz.stylua",
         "editor.tabCompletion": "on",
@@ -15,5 +23,5 @@
     "workbench.colorCustomizations": {
         "editor.selectionBackground": "#c639798e",
         "editor.selectionHighlightBackground": "#c639798e",
-    }
+    },
 }

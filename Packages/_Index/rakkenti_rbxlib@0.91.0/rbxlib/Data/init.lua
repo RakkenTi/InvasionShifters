@@ -15,7 +15,7 @@ local DataTemplate = require(script.DataTemplate)
 
 --// Variables
 local PlayerKeyPrefix = "Player_"
-local PlayerDataStore = ProfileService.GetProfileStore("GameData", DataTemplate)
+local PlayerDataStore = ProfileService.GetProfileStore("PlayerData", DataTemplate)
 
 --// Setup
 local Log = Utils.log.new("[DATA]")

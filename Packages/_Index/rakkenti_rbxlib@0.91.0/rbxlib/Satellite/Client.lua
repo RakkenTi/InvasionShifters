@@ -28,6 +28,8 @@ local Log = Utils.log.new("[Satellite Client]")
 local Events = script.Parent.__events
 
 --// Main
+Log:disable()
+
 local Client = {}
 Client._bindables = {}
 

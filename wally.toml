@@ -1,7 +1,8 @@
 [package]
-name = "rakkenti/rbxlib"
-version = "0.1.0"
+name = "rakkenti/shifters"
+version = "0.1.1"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 [dependencies]
+rbxlib = "rakkenti/rbxlib@0.91.0"

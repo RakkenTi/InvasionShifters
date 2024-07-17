@@ -6,7 +6,7 @@
         {
             "label": "buildShifters",
             "type": "shell",
-            "command": "moonwave dev --code /src/init.lua"
+            "command": "moonwave dev --code /src/shifters/"
         }
     ]
 }

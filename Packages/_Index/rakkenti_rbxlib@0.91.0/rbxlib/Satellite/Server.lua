@@ -29,6 +29,8 @@ local Log = Utils.log.new("[Satellite Client]")
 local Events = script.Parent.__events
 
 --// Main
+Log:disable()
+
 local Server = {}
 Server._bindables = {}
 
@@ -82,7 +84,7 @@ function Server.SendWithin(eventname: string, pos: Vector3, radius: number, ...)
 end
 
 function Server.SendAll(eventname: string, ...)
-	for _, player in Players:GetPlayer() do
+	for _, player in Players:GetPlayers() do
 		Server.Send(eventname, player, ...)
 	end
 end

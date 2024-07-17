@@ -1,0 +1,7 @@
+[package]
+name = "rakkenti/rbxlib"
+description = "RakkenTi's library for personal use."
+version = "0.91.0"
+license = "MIT OR Apache-2.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"

@@ -8,9 +8,12 @@
     },
 
     "ReplicatedStorage": {
-      "Shifters": {
-        "$path": "src"
-      }
+      "$path": "src",
+      "$className": "ReplicatedStorage",
+      "Packages": {
+        "$path": "Packages"
+      },
+      "$ignoreUnknownInstances": true
     },
 
     "StarterPlayer": {

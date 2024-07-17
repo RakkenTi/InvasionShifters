@@ -54,6 +54,13 @@
 		],
 	},
 
+	"Insert UserInputServer": {
+		"prefix": "_UserInputService",
+		"body": [
+			"local UserInputService = game:GetService('UserInputService')"
+		],
+	},
+
 	"Insert RunService": {
 		"prefix": "_RunService",
 		"body": [
@@ -67,6 +74,28 @@
 			"local HttpService = game:GetService('HttpService')"
 		],
 	},
+
+	"Insert ServerStorage": {
+		"prefix": "_ServerStorage",
+		"body": [
+			"local ServerStorage = game:GetService('ServerStorage')"
+		],
+	},
+
+	"Insert SoundService": {
+		"prefix": "_SoundService",
+		"body": [
+			"local SoundService = game:GetService('SoundService')"
+		],
+	},
+
+	"Insert Lighting": {
+		"prefix": "_Lighting",
+		"body": [
+			"local Lighting = game:GetService('Lighting')"
+		],
+	},
+
 
 	// Misc
 
@@ -105,7 +134,7 @@
 	"Insert a boilerplate for module scripts": {
 		"prefix": "rbxmoduleboilerplate",
 		"body": [
-			"--[[\n\n\n\n]]\n\n--// Services\n\n--// Modules\n\n--// Module-Constants\n\n--// Variables\n\n--// Main\n\n--[[ Private Functions ]]--\n\n--[[ Public Functions ]]--"
+			"--[[\n\n\n\n]]\n\n--// Services\n\n--// Modules\n\n--// Module-Constants\n\n--// Variables\n\n--// Main\n\n--[[ Private Functions ]]\n\n--[[ Public Functions ]]"
 		],
 		"description": "Insert a boilerplate description of a module-script using comments."
 	}
