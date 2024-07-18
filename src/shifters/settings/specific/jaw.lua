@@ -13,10 +13,12 @@ return {
 		StaminaRegenRate = 0.095,
 	},
 	Constants = {
-		maxDoubleTapWThresholdTimeForRun = 0.25,
+		MaxDoubleTapWThresholdTimeForRun = 0.25,
+		ClimbRange = 40,
+		ClimbSpeed = 100,
 	},
 	Animations = {
-		useAlternativeJumpAnimation = false,
+		UseAlternativeJumpAnimation = false,
 	},
 	Controls = {
 		Jump = Enum.KeyCode.Space,
