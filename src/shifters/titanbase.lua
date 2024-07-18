@@ -61,18 +61,19 @@ local LightningAuras = ShifterAssets.VFX.Auras.Lightning:GetChildren() :: { Part
 
 ]=]
 local BaseShifterClass = {}
+BaseShifterClass.shifters = {}
 BaseShifterClass.__index = BaseShifterClass
 
 --[[ Private Functions ]]
 --~~[[ Client Replication ]]~~--
-local function Transform(player: Player, ShifterName: string, TitanModel: Model)
+local function TransformClient(player: Player, ShifterName: string)
+	Log:print("Replicating Transformation")
 	TransformationSFX.Rumble:Play()
 	task.wait(0.5)
 	local Particles = {}
 	local ColorCorrection = Instance.new("ColorCorrectionEffect")
 	local TransformationParticles = ShifterAssets.VFX.Transformations[ShifterName]:Clone() :: Model
 	local character = player.Character or player.CharacterAdded:Wait()
-	local HumanoidRootPart = character:WaitForChild("HumanoidRootPart") :: BasePart
 	TransformationSFX.Sparks:Play()
 
 	for _, basepart in character:GetChildren() do
@@ -102,8 +103,15 @@ local function Transform(player: Player, ShifterName: string, TitanModel: Model)
 	TransformationSFX.Strike:Play()
 
 	local connection
-	connection = RunService.RenderStepped:Connect(function(delta: number)
-		TransformationParticles:PivotTo(CFrame.new(HumanoidRootPart.Position))
+	connection = RunService.RenderStepped:Connect(function()
+		local ucharacter = player.Character
+		if not ucharacter then
+			return
+		end
+		local HumanoidRootPart = ucharacter:FindFirstChild("HumanoidRootPart")
+		if HumanoidRootPart then
+			TransformationParticles:PivotTo(CFrame.new(HumanoidRootPart.Position))
+		end
 	end)
 	TransformationParticles.Parent = game.Workspace
 	VfxU.SetParticle(TransformationParticles.Main.Top, true)
@@ -131,13 +139,21 @@ local function SetupSounds()
 	end
 end
 
+local function ApplyMassless(root: Instance)
+	for _, v in root:GetDescendants() do
+		if v:IsA("BasePart") then
+			v.Massless = true
+		end
+	end
+end
+
 local function InitServer()
 	Satellite.Create("RemoteEvent", "TitanTransform")
 end
 
 local function InitClient()
 	SetupSounds()
-	Satellite.ListenTo("TitanTransform"):Connect(Transform)
+	Satellite.ListenTo("TitanTransform"):Connect(TransformClient)
 end
 
 --[[ Public Functions ]]
@@ -146,12 +162,28 @@ end
     @within BaseShifterClass
     Initiates a titan transformation based on the player's ShifterName data.
 ]=]
-function BaseShifterClass.new(player: Player)
+function BaseShifterClass.new(player: Player, TitanSettings: { any })
+	Log:print(`Initializing titan for player: [{player}]`)
 	local self = setmetatable({}, BaseShifterClass)
 	local ShifterName = Data:GetData(player, "ShifterName") :: string
-	local TitanModel = ShifterAssets.Titans[ShifterName]:Clone()
+	local TitanModel = ShifterAssets.Titans[ShifterName]:Clone() :: Model
+	local character = player.Character or player.CharacterAdded:Wait()
+	local HumanoidRootPart = character:WaitForChild("HumanoidRootPart") :: BasePart
 	Satellite.SendAll("TitanTransform", player, ShifterName, TitanModel)
-	task.wait(4)
+	task.wait(2)
+	TitanModel.Parent = game.Workspace
+	TitanModel:PivotTo(HumanoidRootPart.CFrame)
+	player.Character = TitanModel
+	Satellite.Send(Settings.dependencies.titan_init_signal_suffix .. ShifterName, player)
+	Log:print(`Titan intialized for player: [{player}]. ShifterClass: [{ShifterName}]`)
+
+	ApplyMassless(TitanModel)
+	self.player = player :: Player
+	self.titan = TitanModel :: Humanoid
+	self.settings = TitanSettings
+	self.titanhumanoid = TitanModel:FindFirstAncestorOfClass("Humanoid")
+		or TitanModel:WaitForChild("Humanoid") :: Humanoid
+	self.shifters[player] = self
 	return self
 end
 

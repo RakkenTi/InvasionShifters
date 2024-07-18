@@ -4,10 +4,10 @@ registry = "test"
 
 [[package]]
 name = "rakkenti/rbxlib"
-version = "0.91.0"
+version = "0.91.1"
 dependencies = []
 
 [[package]]
 name = "rakkenti/shifters"
-version = "0.1.0"
-dependencies = [["rbxlib", "rakkenti/rbxlib@0.91.0"]]
+version = "0.1.1"
+dependencies = [["rbxlib", "rakkenti/rbxlib@0.91.1"]]

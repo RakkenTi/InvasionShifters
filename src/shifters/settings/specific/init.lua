@@ -1,1 +1,3 @@
-return {}
+return {
+	jaw = require(script.jaw),
+}

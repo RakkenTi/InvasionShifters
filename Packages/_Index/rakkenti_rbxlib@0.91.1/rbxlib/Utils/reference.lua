@@ -11,6 +11,7 @@ local Players = game:GetService("Players")
 return {
 
 	Client = {
+		Camera = game.Workspace.CurrentCamera,
 		Player = Players.LocalPlayer,
 		Character = Players.LocalPlayer
 			and (Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()),

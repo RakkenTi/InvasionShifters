@@ -13,4 +13,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 return {
 	assets = ReplicatedStorage:WaitForChild("ShifterAssets"),
 	rbxlib = require(ReplicatedStorage.Packages.rbxlib),
+	titan_init_signal_suffix = "TitanInit_",
+	titan_script_init_signal_suffix = "TitanScriptInit_",
 }

@@ -42,7 +42,6 @@ local function HandleClientAction(player: Player, actionkey: Enum.KeyCode)
 		return
 	end
 	if actionkey == Settings.universal.Input.shifter_transformation_key then
-		local ShifterClass = ShifterTitans[ShifterName]
 		ShifterClass.new(player)
 	end
 end
