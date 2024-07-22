@@ -15,7 +15,7 @@ dependencies = []
 [[package]]
 name = "rakkenti/shifters"
 version = "0.1.1"
-dependencies = [["Knit", "sleitnick/knit@1.7.0"], ["rbxlib", "rakkenti/rbxlib@0.94.4"]]
+dependencies = [["Knit", "sleitnick/knit@1.7.0"], ["Signal", "sleitnick/signal@1.5.0"], ["Trove", "sleitnick/trove@0.5.0"], ["rbxlib", "rakkenti/rbxlib@0.94.4"]]
 
 [[package]]
 name = "sleitnick/comm"
@@ -34,5 +34,15 @@ dependencies = []
 
 [[package]]
 name = "sleitnick/signal"
+version = "1.5.0"
+dependencies = []
+
+[[package]]
+name = "sleitnick/signal"
 version = "2.0.1"
+dependencies = []
+
+[[package]]
+name = "sleitnick/trove"
+version = "0.5.0"
 dependencies = []
