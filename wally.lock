@@ -3,11 +3,6 @@
 registry = "test"
 
 [[package]]
-name = "evaera/promise"
-version = "4.0.0"
-dependencies = []
-
-[[package]]
 name = "rakkenti/rbxlib"
 version = "0.94.4"
 dependencies = []
@@ -15,34 +10,4 @@ dependencies = []
 [[package]]
 name = "rakkenti/shifters"
 version = "0.1.1"
-dependencies = [["Knit", "sleitnick/knit@1.7.0"], ["Signal", "sleitnick/signal@1.5.0"], ["Trove", "sleitnick/trove@0.5.0"], ["rbxlib", "rakkenti/rbxlib@0.94.4"]]
-
-[[package]]
-name = "sleitnick/comm"
-version = "1.0.1"
-dependencies = [["Option", "sleitnick/option@1.0.5"], ["Promise", "evaera/promise@4.0.0"], ["Signal", "sleitnick/signal@2.0.1"]]
-
-[[package]]
-name = "sleitnick/knit"
-version = "1.7.0"
-dependencies = [["Comm", "sleitnick/comm@1.0.1"], ["Promise", "evaera/promise@4.0.0"]]
-
-[[package]]
-name = "sleitnick/option"
-version = "1.0.5"
-dependencies = []
-
-[[package]]
-name = "sleitnick/signal"
-version = "1.5.0"
-dependencies = []
-
-[[package]]
-name = "sleitnick/signal"
-version = "2.0.1"
-dependencies = []
-
-[[package]]
-name = "sleitnick/trove"
-version = "0.5.0"
-dependencies = []
+dependencies = [["rbxlib", "rakkenti/rbxlib@0.94.4"]]
