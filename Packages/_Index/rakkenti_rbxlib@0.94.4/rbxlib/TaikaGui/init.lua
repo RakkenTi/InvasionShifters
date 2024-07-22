@@ -227,7 +227,7 @@ function TaikaGui.new(id: string, preset: TYPE_PRESETS)
 end
 
 --~~/// [[ Class Type ]] ///~~---
-type CLASS = typeof(TaikaGui.new(...))
+export type CLASS = typeof(TaikaGui.new(...))
 
 --~~/// [[ Base Functions ]] ///~~--
 
@@ -240,8 +240,9 @@ Example use:
 gui:Construct("Frame", "Container") -- Create a Frame instance with id "Container"
 ```
 @within Base
+@return CLASS
 ]=]
-function TaikaGui.Construct(self: CLASS, elementClass: PossibleElements, id: string?): CLASS
+function TaikaGui.Construct(self: CLASS, elementClass: PossibleElements, id: string?)
 	-- Auto-set id if not given
 	if not id then
 		id = HttpService:GenerateGUID()

@@ -1,14 +1,15 @@
 {
-  "name": "rbxlib",
+  "name": "invasionshifters",
   "tree": {
     "$className": "DataModel",
 
     "ServerScriptService": {
-      "$path": "src/ServerScriptService"
+      "$path": "src/ServerScriptService",
+      "$ignoreUnknownInstances": true
     },
 
     "ReplicatedStorage": {
-      "$path": "src",
+      "$path": "src/ReplicatedStorage",
       "$className": "ReplicatedStorage",
       "Packages": {
         "$path": "Packages"

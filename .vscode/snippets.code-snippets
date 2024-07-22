@@ -134,7 +134,7 @@
 	"Insert a boilerplate for module scripts": {
 		"prefix": "rbxmoduleboilerplate",
 		"body": [
-			"--[[\n\n\n\n]]\n\n--// Services\n\n--// Modules\n\n--// Module-Constants\n\n--// Variables\n\n--// Main\n\n--[[ Private Functions ]]\n\n--[[ Public Functions ]]"
+			"--[[\n\n\n\n]]\n\n--// Services\n\n--// Modules\n\n--// Module-Constants\n\n--// Constants\n\n--// Variables\n\n--// Main\n\n--[[ Private Functions ]]\n\n--[[ Public Functions ]]"
 		],
 		"description": "Insert a boilerplate description of a module-script using comments."
 	}

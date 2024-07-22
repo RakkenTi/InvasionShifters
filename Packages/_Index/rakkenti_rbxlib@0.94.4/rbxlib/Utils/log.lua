@@ -108,9 +108,6 @@ function log:message(message: string, source: Instance?, line: number?, PresetTa
 end
 
 function log:error(message: string, level: number?, PresetTag: string?)
-	if self.disabled then
-		return
-	end
 	if PresetTag then
 		error(`{self.tag} | {message} {PresetTag} | Trace: [{debug.info(2, "s")}`)
 		return
@@ -127,9 +124,6 @@ function log:printheader(message: string)
 end
 
 function log:warnheader(message: string)
-	if self.disabled then
-		return
-	end
 	warn(`<------------------------------> | [{message}] | <------------------------------>||`)
 end
 

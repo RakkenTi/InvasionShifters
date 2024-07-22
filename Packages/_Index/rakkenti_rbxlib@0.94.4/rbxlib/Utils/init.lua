@@ -9,4 +9,10 @@ return {
 	reference = require(script.reference),
 	property = require(script.property),
 	vfx = require(script.vfx),
+	sound = require(script.sound),
+	anim = require(script.anim),
+	basepart = require(script.basepart),
+	hitbox = require(script.hitbox),
+	vacuum = require(script.vacuum),
+	ayano = require(script.ayano),
 }

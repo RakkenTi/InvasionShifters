@@ -20,7 +20,10 @@ function Loader.LoadChildren(root: Instance)
 		if module:IsA("ModuleScript") then
 			Stopwatch.Start()
 
-			require(module)
+			local Module = require(module)
+			if Module.Start then
+				Module.Start()
+			end
 
 			Log:print(`loaded [{module}] | Took {Stopwatch.Stop()}s`)
 		end
@@ -32,7 +35,10 @@ function Loader.LoadDescendants(root: Instance)
 		if module:IsA("ModuleScript") then
 			Stopwatch.Start()
 
-			require(module)
+			local Module = require(module)
+			if Module.Start then
+				Module.Start()
+			end
 
 			Log:print(`loaded [{module}] | Took {Stopwatch.Stop()}s`)
 		end
