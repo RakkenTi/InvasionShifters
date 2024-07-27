@@ -25,6 +25,8 @@ Wrapper Module
 --// Services
 local RunService = game:GetService("RunService")
 
+Instance.new("Folder", script).Name = "__events"
+
 --// Main
 if RunService:IsServer() then
 	return require(script.Server)

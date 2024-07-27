@@ -39,7 +39,8 @@ local DefaultData = {
 	},
 	Stats = {
 		Humanoid = {
-			Health = 3600,
+			MaxHealth = 30000,
+			Health = 30000,
 			WalkSpeed = 120,
 			RunSpeed = 260,
 			JumpHeight = 50,
