@@ -26,15 +26,21 @@ function Ayano.new()
 	local self = setmetatable({}, Ayano)
 	self._connections = {}
 	self._threads = {}
+	self._instances = {}
 	self.logger = Log.new("[Ayano]")
 	return self
 end
 
 type Class = typeof(Ayano.new())
 
+function Ayano.DelayClean(self: Class, time: number)
+	task.delay(time, self.Clean, self)
+end
+
 function Ayano.Clean(self: Class, id: string?)
-	self:_cleanConnections(id)
-	self:_cleanThreads(id)
+	self:CleanConnections(id)
+	self:CleanInstances(id)
+	self:CleanThreads(id)
 end
 
 function Ayano.SetDebugMode(self: Class, bool: boolean)
@@ -48,7 +54,7 @@ end
 function Ayano.Connect(self: Class, signal: RBXScriptSignal, callback: () -> nil, id: string?)
 	local _id = id or HttpService:GenerateGUID()
 	if id then
-		self:_cleanConnections(id)
+		self:CleanConnections(id)
 	end
 	self.logger:print("Tracking RBXScriptSignal..")
 	local connection = signal:Connect(callback)
@@ -59,15 +65,50 @@ end
 function Ayano.TrackThread(self: Class, thread: thread, id: string?)
 	local _id = id or HttpService:GenerateGUID()
 	if id then
-		self:_cleanThreads(id)
+		self:CleanThreads(id)
 	end
 	self.logger:print("Tracking thread..")
 	self._threads[_id] = thread
 	return thread
 end
 
---~~/// [[ Private Functions ]] ///~~--
-function Ayano._cleanThreads(self: Class, specific_id: string?)
+function Ayano.TrackInstance<i>(self: Class, i: i, id: string?): i
+	local _id = id or HttpService:GenerateGUID()
+	if id then
+		self:CleanInstances(id)
+	end
+	self.logger:print("Tracking instance..")
+	self._instances[_id] = i
+	return i
+end
+
+--~~/// [[ Cleanup Functions ]] ///~~--
+function Ayano.CleanInstances(self: Class, specific_id: string?)
+	local AllInstances = self._instances
+	self.logger:print("Cleaning Instances")
+	if not specific_id then
+		for id, instance: Instance in pairs(AllInstances) do
+			local success = pcall(function()
+				instance:Destroy()
+			end)
+			if not success then
+				Log:warn(`Failed to destroy instance: [{instance}]`)
+			end
+			self._instances[id] = nil
+		end
+	else
+		local instance = AllInstances[specific_id]
+		local success = pcall(function()
+			instance:Destroy()
+		end)
+		if not success then
+			Log:warn(`Failed to destroy instance: [{instance}]`)
+		end
+		self._instances[specific_id] = nil
+	end
+end
+
+function Ayano.CleanThreads(self: Class, specific_id: string?)
 	local AllThreads = self._threads
 	self.logger:print("Cleaning Threads")
 	if not specific_id then
@@ -93,7 +134,7 @@ function Ayano._cleanThreads(self: Class, specific_id: string?)
 	end
 end
 
-function Ayano._cleanConnections(self: Class, specific_id: string?)
+function Ayano.CleanConnections(self: Class, specific_id: string?)
 	local AllConnections = self._connections
 	self.logger:print("Cleaning Connections")
 	if not specific_id then
@@ -123,8 +164,10 @@ function Ayano._cleanConnections(self: Class, specific_id: string?)
 	end
 end
 
+--~~/// [[ Private Functions ]] ///~~--
+
 warn([[
-                                        Ayano@rakken/rbxlib/util                                                                                        
+                                    Ayano@rakken/rbxlib/util                                                                                        
                                                      on.                                            
                                                  .663nz6a1                                          
                                                 36;      3uo                                        

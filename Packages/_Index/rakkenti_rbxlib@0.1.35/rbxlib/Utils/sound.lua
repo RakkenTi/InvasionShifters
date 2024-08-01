@@ -19,4 +19,12 @@ function Sounds.new(id: number)
 	return sound
 end
 
+function Sounds.Play(root: Instance)
+	for _, sound in root:GetDescendants() do
+		if sound:IsA("Sound") then
+			sound:Play()
+		end
+	end
+end
+
 return Sounds

@@ -1,12 +1,18 @@
+export type DefaultAnimationTracks = {
+	Freefall: AnimationTrack,
+	Heavy: AnimationTrack,
+	Idle: AnimationTrack,
+	Jump: AnimationTrack,
+	Run: AnimationTrack,
+	Walk: AnimationTrack,
+	DeShift: AnimationTrack,
+	Shift: AnimationTrack,
+	Roar: AnimationTrack,
+}
+
 export type DefaultShifterConfig = {
-	DefaultAnimations: {
-		Freefall: number,
-		Heavy: number,
-		Idle: number,
-		Jump: number,
-		Run: number,
-		Walk: number,
-	},
+	WeightForce: number,
+	DefaultAnimations: DefaultAnimationTracks,
 	ColorCorrectionData: {
 		OnTransformation: {
 			Brightness: number,
@@ -37,19 +43,6 @@ export type DefaultShifterConfig = {
 		},
 	},
 	DoubleTapThresholdTime: number,
-}
-
-export type DefaultAnimationTracks = {
-	Climb: AnimationTrack,
-	Freefall: AnimationTrack,
-	Heavy: AnimationTrack,
-	Idle: AnimationTrack,
-	Jump: AnimationTrack,
-	LeftAttack: AnimationTrack,
-	RightAttack: AnimationTrack,
-	Roar: AnimationTrack,
-	Run: AnimationTrack,
-	Walk: AnimationTrack,
 }
 
 export type DefaultShifterController = {

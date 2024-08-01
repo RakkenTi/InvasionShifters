@@ -60,7 +60,7 @@ function ShifterClient._setupInput()
 			return
 		end
 		if input.KeyCode == Enum.KeyCode.P then
-			Satellite.Send("CreateTitan", Reference.Client.Player)
+			Satellite.Send("CreateTitan")
 		end
 	end)
 end

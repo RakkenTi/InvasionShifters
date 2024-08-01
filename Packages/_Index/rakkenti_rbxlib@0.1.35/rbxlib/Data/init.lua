@@ -246,7 +246,7 @@ function Module:GetData(player: Player, key: string)
 		)
 	end
 
-	return path[key]
+	return path and path[key] or nil
 end
 
 --// Init

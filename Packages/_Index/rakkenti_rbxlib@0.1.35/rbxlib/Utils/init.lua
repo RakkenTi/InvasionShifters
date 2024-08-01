@@ -13,6 +13,6 @@ return {
 	anim = require(script.anim),
 	basepart = require(script.basepart),
 	hitbox = require(script.hitbox),
-	vacuum = require(script.vacuum),
+	--vacuum = require(script.vacuum), retired, replaced by Ayano
 	ayano = require(script.ayano),
 }

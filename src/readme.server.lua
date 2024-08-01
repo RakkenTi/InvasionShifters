@@ -5,4 +5,4 @@
 -- Because Rojo will overwrite them in the next sync
 -- Wally is used for my rbxlib library dependency. Do not delete it.
 -- The source is in a github repository. Let me know if you need the source.
--- Documentation: WIP
+-- Documentation: WIP/NONE

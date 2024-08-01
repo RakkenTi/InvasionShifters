@@ -4,7 +4,9 @@ THIS TEMPLATE REPRESENTS THE JAW TITAN
 
 @rakken
 ShifterConfig
-Make sure to see the DefaultShifterConfig to find the mandatory animations.
+Make sure to see the DefaultShifterConfig to find the mandatory animations. //
+NOTICE WHEN EDITING CONFIG: Once finished editing the config, send it to @rakken because it will be overwritten by rojo.
+
 
 Notes:
 LeftAttack and RightAttack are the alternating m1 animations.
@@ -17,11 +19,13 @@ it is usually a single set of keyframes representing a state of freefall.
 local Types = require(script.Parent.Parent.Parent.Types)
 
 local DefaultData = {
+	WeightForce = -1000000,
 	DefaultAnimations = {
-		Heavy = 18533364349,
 		Idle = 18533372177,
-		Run = 18533393887,
-		Walk = 18533400786,
+		Run = 18718072357,
+		Walk = 18718069573,
+		DeShift = 18680354232,
+		Shift = 18739388492,
 	},
 	ColorCorrectionData = {
 		OnTransformation = {
@@ -39,16 +43,17 @@ local DefaultData = {
 	},
 	Stats = {
 		Humanoid = {
-			MaxHealth = 30000,
-			Health = 30000,
+			MaxHealth = 10000,
+			Health = 10000,
 			WalkSpeed = 120,
 			RunSpeed = 260,
-			JumpHeight = 50,
-			HipHeight = 26,
+			UseJumpPower = false,
+			JumpHeight = 120,
+			HipHeight = 36,
 		},
 		Stamina = {
 			Minimum = 5,
-			Maximum = 100,
+			Maximum = 10000,
 			MinimumThreshold = 50,
 			ConsumptionRate = 0.01,
 			RegenerationRate = 0.025,
@@ -63,7 +68,7 @@ local CustomData = {
 		18533384595, -- Right Attack
 	},
 	Climbing = {
-		ClimbRange = 40,
+		ClimbRange = 60,
 		ClimbSpeed = 20, -- Affected by current humanoid WalkSpeed. True climbspeed formula: (ClimbSpeed + Humanoid.WalkSpeed)
 	},
 	Combat = {
@@ -75,37 +80,68 @@ local CustomData = {
 			Cooldown = 60,
 		},
 		Roar = {
-			Damage = 0,
-			ForceMagnitude = 100,
-			StaminaThreshold = 80,
-			StaminaCost = 80,
-			TickCount = 30, -- Duration. 1 tick is 0.1s. Careful with this.
-			Range = 100,
+			ForceMagnitude = 200,
+			StaminaAdd = 80,
+			Range = 200,
+			Cooldown = 20,
+			Duration = 6,
 		},
 		Hitbox = {
 			LMB = {
-				CFrameOffset = CFrame.new(0, 10, -20),
-				Size = Vector3.new(30, 30, 50),
+				CFrameOffset = CFrame.new(0, -20, -20),
+				Size = Vector3.new(15, 30, 35),
 			},
+		},
+		Bite = {
+			BiteDamage = 60,
+			BiteHitbox = Vector3.new(30, 40, 30),
+			Offset = CFrame.new(0, -30, -70),
+			DashMagnitude = 250,
+			AttackCooldown = 15,
+			AttackStaminaCost = 60,
+			GrabCooldown = 5,
+			GrabStaminaCost = 30,
+		},
+		NapeGuard = {
+			ReductionFactor = 0.2, -- Multiplies the damage by this number.
+		},
+		NapeHarden = {
+			Cooldown = 20,
+			MinimumStaminaRequired = 50, -- Will switch off if under this much stamina.
+			StaminaDrain = 0.8,
+			Duration = 10,
 		},
 	},
 	MiscAnimations = {
 		Freefall = 18538824689,
-		Climb = 18533359107,
+		Climb = 18718640019,
 		Jump = 18534652407,
 	},
 	CombatAnimations = {
 		Roar = 18533389680,
+		Bite = 18715607517,
+		Grab = 18715607517,
+		Eat = 18715730546,
+		NapeGuard = 18715857909,
 	},
 	ShifterSFX = {
-		Impact = 2011915907,
-		Rumble = 6677463885,
-		Sparks = 4591549719,
-		Strike = 6677463428,
-		Wind = 6677464347,
-		Roar = 18598031027,
+		Impact = { 2011915907, 6 },
+		Rumble = { 6677463885, 1 },
+		Sparks = { 4591549719, 2 },
+		Strike = { 6677463428, 2 },
+		Wind = { 6677464347, 3 },
+		Roar = { 18729890558, 2 },
+		Special = { 5951831903, 2 },
+		Hit = { 6506292904, 1 },
+		TransformRoar = { 18598031027, 2, 0.8 },
+	},
+	Health = {
+		Arm = 15, -- Amount of slashes to break arm,
 	},
 	JumpStaminaCost = 10,
+	BlindDuration = 4,
+	NapeHardenTweenInfo = TweenInfo.new(1.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+	BlindTweenInfo = TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
 	TransformBeamTweenInfo = TweenInfo.new(1.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
 	TitanFadeOutTweenInfo = TweenInfo.new(7, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
 	ColorCorrectionTweenInfo = TweenInfo.new(1.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),

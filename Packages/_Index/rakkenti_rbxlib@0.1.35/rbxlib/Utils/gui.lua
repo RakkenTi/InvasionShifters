@@ -22,8 +22,4 @@ function UtilsGui.OffsetToScale(Offset: UDim2): UDim2
 	return UDim2.new(Offset.X.Offset / ScreenSize.X, Offset.Y.Offset / ScreenSize.Y)
 end
 
-function UtilsGui.GetValue(valuename: string)
-	return UtilsGui.values[valuename]
-end
-
 return UtilsGui

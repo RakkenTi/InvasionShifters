@@ -78,7 +78,7 @@ end
 function Server.SendWithin(eventname: string, pos: Vector3, radius: number, ...)
 	local event = Server.Retrieve(eventname) :: Instance
 
-	for _, player in ipairs(Utils.players.SearchPlayers(pos, radius)) do
+	for _, player in ipairs(Utils.players.RadiusSearchPlayers(pos, radius)) do
 		Server.Send(event, player, ...)
 	end
 end

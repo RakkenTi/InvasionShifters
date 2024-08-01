@@ -25,11 +25,11 @@ Wrapper Module
 --// Services
 local RunService = game:GetService("RunService")
 
-Instance.new("Folder", script).Name = "__events"
-
 --// Main
 if RunService:IsServer() then
+	Instance.new("Folder", script).Name = "__events"
 	return require(script.Server)
 else
+	script:WaitForChild("__events")
 	return require(script.Client)
 end

@@ -18,7 +18,7 @@ function players.OnPlayerAdded(func: (Player, any?) -> any?)
 	Players.PlayerAdded:Connect(func)
 end
 
-function players.SearchPlayers(RootPos: Vector3, Radius: number)
+function players.RadiusSearchPlayers(RootPos: Vector3, Radius: number)
 	local AffectedPlayers = {}
 
 	for _, player in Players:GetPlayers() do
