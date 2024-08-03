@@ -4,15 +4,22 @@ export type DefaultAnimationTracks = {
 	Idle: AnimationTrack,
 	Jump: AnimationTrack,
 	Run: AnimationTrack,
+	AltRun: AnimationTrack,
 	Walk: AnimationTrack,
 	DeShift: AnimationTrack,
 	Shift: AnimationTrack,
 	Roar: AnimationTrack,
+	LeftGrab: AnimationTrack,
+	RightGrab: AnimationTrack,
+	Block: AnimationTrack,
+	Special: AnimationTrack,
+	Special2: AnimationTrack,
 }
 
 export type DefaultShifterConfig = {
 	WeightForce: number,
 	DefaultAnimations: DefaultAnimationTracks,
+	StunAnimations: { AnimationTrack | number },
 	ColorCorrectionData: {
 		OnTransformation: {
 			Brightness: number,

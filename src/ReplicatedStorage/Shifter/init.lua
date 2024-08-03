@@ -35,6 +35,7 @@ local ShifterTitans = ShifterAssets.Titans :: Folder
 local PlayerDataDB = DataStoreService:GetDataStore("PlayerData") -- Not using rbxlib.Data due to PlayerDataService conflictions in the main game.
 
 --// Variables
+local PreviousActionName = ""
 
 --// Main
 local Shifter = {}
@@ -76,7 +77,10 @@ function Shifter._onTransformationSequenceFinish(player: Player)
 end
 
 function Shifter._onTitanAction(player: Player, actionname: string, ...)
-	Log:printheader(`onTitanAction: [{player}] | [{actionname}] [{... or "No Parameters"}]`)
+	if PreviousActionName ~= actionname then
+		Log:printheader(`onTitanAction: [{player}] | [{actionname}] [{... or "No Parameters"}]`)
+		PreviousActionName = actionname
+	end
 	local self = Shifter._shifters[player.UserId] :: Class
 	--~~[[ Actions ]]~~--
 	--~~[[ Reserver Action Names: NapeEject ]]~~--
@@ -189,15 +193,18 @@ end
 function Shifter._createSignals()
 	Satellite.Create("RemoteEvent", "onTitanCreated") -- Used for TransformationSequence. Server notifies all clients that a titan has been created.
 	Satellite.Create("RemoteEvent", "TitanAction") -- A remote for Server Defined Titan Actions that a client can fire to activate.
+	Satellite.Create("UnreliableRemoteEvent", "UnreliableTitanAction") -- Mainly for IK Control, same code block as TitanAction, but as an unreliable event.
 	Satellite.Create("RemoteEvent", "CreateTitan") -- The Start of Transformation Sequence. Sends a signal for all clients to replicate a transformation vfx. This is done on the client.
 	Satellite.Create("RemoteEvent", "TransformationVFXFinished") -- The Second Step. Client fires this remote and the server will handle the next step of titan transformation on the server.
 	Satellite.Create("RemoteEvent", "ActivateTitan") -- Activates Titan Controller on Client. Reponsible for movement/animations
 	Satellite.Create("RemoteEvent", "ReplicateTitanVFX") -- For displaying/replicating Titan Action VFX on clients.
+	Satellite.Create("UnreliableRemoteEvent", "UnreliableReplicateTitanVFX") -- Same as ReplicateTitanVFX, but unreliable
 	Satellite.Create("RemoteEvent", "ShifterLimbHit") -- Link between ODMClass and this module
 	Satellite.Create("RemoteEvent", "SetupCollisionGroups") -- Collision Groups On Client
 	Satellite.ListenTo("CreateTitan"):Connect(Shifter.new)
 	Satellite.ListenTo("TransformationVFXFinished"):Connect(Shifter._onTransformationSequenceFinish)
 	Satellite.ListenTo("TitanAction"):Connect(Shifter._onTitanAction)
+	Satellite.ListenTo("UnreliableTitanAction"):Connect(Shifter._onTitanAction)
 	Satellite.ListenTo("ShifterLimbHit"):Connect(Shifter._onLimbHit)
 end
 
@@ -305,11 +312,11 @@ function Shifter.new(player: Player, force: boolean)
 		nil,
 		nil,
 		{ "BasePart" },
-		{ Hitbox = true, HumanoidRootPart = true }
+		{ Hitbox = true, HumanoidRootPart = true, IKPart = true }
 	)
 	Property.BatchSet(TitanModelDescendants, {
 		Anchored = false,
-	}, nil, nil, { "BasePart" })
+	}, nil, nil, { "BasePart" }, { IKPart = true })
 
 	Shifter._setupHitboxTags(TitanModel, player)
 	self._loadTitanConfig(TitanModel, Config)
@@ -369,7 +376,7 @@ function Shifter.Start()
 	Shifter._startServerTitanModules()
 	Shifter._createSignals()
 	Shifter._setupForcedPlayersBehaviour()
-	Log:printheader(`Shifter Server Initialized in {Stopwatch.Stop()}'s.`)
+	Log:printheader(`Shifter Server Initialized in {Stopwatch.Stop()}s.`)
 end
 
 --~~[[ Types ]]~~--

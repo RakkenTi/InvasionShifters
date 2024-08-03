@@ -13,6 +13,9 @@ return {
 	anim = require(script.anim),
 	basepart = require(script.basepart),
 	hitbox = require(script.hitbox),
+	camerashake = require(script.camerashake),
 	--vacuum = require(script.vacuum), retired, replaced by Ayano
 	ayano = require(script.ayano),
+	mouse = require(script.mouse),
+	excurve = require(script.excurve),
 }

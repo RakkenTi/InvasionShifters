@@ -30,6 +30,7 @@ local Table = Utils.table
 local BasePart = Utils.basepart
 local VFX = Utils.vfx
 local Rubble = VFX.Rubble
+local CameraShake = Utils.camerashake
 
 --// Module-Constants
 local Ayano = Utils.ayano.new()
@@ -82,6 +83,7 @@ local DefaultTitanData = {
 		canAttackDash = true,
 		isHarden = false,
 		canGrabDash = true,
+		isStunned = false,
 		isGuardingNape = false,
 		isDashing = false,
 		isRoaring = false,
@@ -141,12 +143,8 @@ local function UpdateCharacterData()
 	selfRaycastParams.FilterDescendantsInstances = { character }
 	Ayano2:Connect(humanoid.HealthChanged, function()
 		if humanoid.Health <= 0 then
-			Log:warn("Jaw titan died. Cleaning up.")
-			TitanAnimations.DeShift:Play()
-			TitanAnimations.DeShift.Stopped:Wait()
-			canCleanup = true
-			Cleanup()
-			Satellite.Send("TitanAction", "Died")
+			Log:warn("Warhammer titan died. Cleaning up.")
+			Titan._NapeEject(true)
 		end
 	end)
 	Ayano2:Connect(character.ChildRemoved, function(instance)
@@ -172,12 +170,12 @@ end
 
 function Titan._initHumanoidStates()
 	humanoid:SetStateEnabled(Enum.HumanoidStateType.Dead, false)
-	--[[ 	humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
+	humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
 	humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, false)
 	humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp, false)
 	humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
 	humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
-	humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming, false) ]]
+	humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming, false)
 end
 
 function Titan._createDefaultTitanAnimations()
@@ -330,10 +328,12 @@ function Titan._activateGui()
 		if StaminaTextLabel then
 			StaminaGui.Enabled = true
 			local connection
-			Ayano2:Connect(humanoid.Died, function()
-				Log:print("Cleaning up Stamina Gui")
-				connection:Disconnect()
-				StaminaGui.Enabled = false
+			Ayano2:Connect(humanoid:GetPropertyChangedSignal("Health"), function()
+				if humanoid.Health <= 0 then
+					Log:print("Cleaning up Stamina Gui")
+					connection:Disconnect()
+					StaminaGui.Enabled = false
+				end
 			end)
 			connection = Ayano:Connect(RunService.Heartbeat, function()
 				StaminaTextLabel.Text = `Stamina: {math.round(TitanData.Stats.Stamina)} | Health: {math.round(
@@ -379,50 +379,58 @@ end
 
 function Titan.PlayTransformationCutscene() end
 
+--~~/// [[ Transform Replicator ]] ///~~--
 function Titan.CreateTransformationVFX(shifter: Player)
 	Log:print("Replicating Transformation VFX")
+	local TransformAyano = Utils.ayano.new()
 	if shifter == player then
 		local _character = player.Character
 		local _humanoid = _character and _character:FindFirstChildOfClass("Humanoid")
 		if _humanoid then
 			local _animator = _humanoid:FindFirstChildOfClass("Animator")
 			if _animator then
-				_animator
-					:LoadAnimation(Ayano:TrackInstance(Anim.new(TitanConfig.Default.DefaultAnimations.Shift)))
-					:Play()
+				local animation =
+					_animator:LoadAnimation(Ayano:TrackInstance(Anim.new(TitanConfig.Default.DefaultAnimations.Shift)))
+				animation:Play()
+				animation.Stopped:Once(function()
+					animation:Play()
+					animation:AdjustSpeed(0)
+					animation.TimePosition = animation.Length - 0.05
+				end)
 			end
 		end
 	end
-	local TransformationParticles = ShifterTransformationParticles:Clone() :: BasePart
+	local TransformationParticles = TransformAyano:TrackInstance(ShifterTransformationParticles:Clone()) :: BasePart
 	local StraightSparks = TransformationParticles.Main.Part.Main.StraightSparks :: ParticleEmitter
 	local LittleShootStuff = TransformationParticles.Main.Part.Main.LittleShootStuff :: ParticleEmitter
 	local BottomAttachment = TransformationParticles.Bottom :: Attachment
 	local TopAttachment = TransformationParticles.Top :: Attachment
 	local TransformationID = HttpService:GenerateGUID()
 	local SteamID = HttpService:GenerateGUID()
-	local TemporaryColorCorrection = Instance.new("ColorCorrectionEffect")
+	local TemporaryColorCorrection = TransformAyano:TrackInstance(Instance.new("ColorCorrectionEffect"))
+	local FlashColorCorrection = TransformAyano:TrackInstance(Instance.new("ColorCorrectionEffect"))
 	local shifterCharacter = shifter.Character
-	local srootpart = shifterCharacter:FindFirstChild("HumanoidRootPart") :: BasePart
+	local srootpart = shifterCharacter:WaitForChild("HumanoidRootPart", 5) :: BasePart
 	if srootpart then
 		srootpart.Anchored = true
 	end
+
 	--~~[[ Setup ]]~~--
 	VFX.SetParticle(TransformationParticles, false)
-	--~~[[ Add Aura ]]~~--
-	VFX.AddAura(ShifterLightningAura, shifterCharacter, TransformationID, TitanConfig.Custom.AuraTweenInfo)
-	TitanSFX.Sparks:Play()
-	task.wait(1)
+	task.wait(1.25)
 
 	--~~/// [[ Begin Sequence ]] ///~~--
-	task.wait(0.5)
-
+	--~~[[ Add Aura ]]~~--
 	TemporaryColorCorrection.Parent = Lighting
+	FlashColorCorrection.Parent = Lighting
 	Property.SetTable(
 		TemporaryColorCorrection,
 		ColorCorrectionData.OnTransformation,
 		TitanConfig.Custom.ColorCorrectionTweenInfo
 	)
-	task.wait(0.7)
+	VFX.AddAura(ShifterLightningAura, shifterCharacter, TransformationID, TitanConfig.Custom.AuraTweenInfo)
+	TitanSFX.Sparks:Play()
+	task.wait(2.7)
 	TitanSFX.Impact:Play()
 	TitanSFX.Strike:Play()
 	LittleShootStuff.Enabled = true
@@ -436,17 +444,60 @@ function Titan.CreateTransformationVFX(shifter: Player)
 		TransformationParticles.Position = srootpart.Position
 	end
 	local alpha = 0
+	local hasTweened = false
 	connection = Ayano:Connect(RunService.RenderStepped, function(delta: number)
 		alpha = math.clamp(alpha + delta, 0.01, 1)
 		local talpha = TweenService:GetValue(alpha, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
 		-- Update Shifter Character because the server might change it to the titan model.
 		shifterCharacter = shifter.Character
 		TransformationParticles.Main:ScaleTo(talpha)
+		if shifterCharacter:HasTag("isTitan") and not hasTweened then
+			hasTweened = true
+			local Descendants = shifterCharacter:GetDescendants()
+			for _, v in Descendants do
+				if v:IsA("BasePart") then
+					local oSize = v.Size
+					v.Size = Vector3.zero
+					v:SetAttribute("oSize", oSize)
+				end
+			end
+			for _, v in Descendants do
+				if v:IsA("BasePart") then
+					local oSize = v:GetAttribute("oSize")
+					local tween = TweenService:Create(v, TitanConfig.Custom.TitanGrowTweenInfo, { Size = oSize })
+					tween:Play()
+					task.wait(0.04)
+				end
+			end
+		end
+		if shifter ~= player then
+			local playerChar = player.Character
+			local prp = playerChar and playerChar.PrimaryPart
+			local phrp = playerChar:FindFirstChild("HumanoidRootPart") :: BasePart
+			local playerHum = playerChar:FindFirstChildOfClass("Humanoid") :: Humanoid
+			if srootpart and prp and playerHum then
+				local DifferenceVector = (prp.Position - srootpart.Position)
+				local Velocity = Vector3.new(DifferenceVector.Unit.X, 0.8, DifferenceVector.Unit.Z)
+					* TitanConfig.Default.Transformation.KnockbackMagnitude
+				local Distance = (srootpart.Position - prp.Position).Magnitude
+				local MinimumDistance = TitanConfig.Default.Transformation.Radius
+				if Distance <= MinimumDistance then
+					local MaxDamage = TitanConfig.Default.Transformation.TickDamage
+					local AlphaDistance = 1 - (Distance / MinimumDistance)
+					local DamageApplied = MaxDamage * AlphaDistance
+					warn(DamageApplied)
+					phrp.AssemblyLinearVelocity = Velocity
+					playerHum:TakeDamage(DamageApplied)
+				end
+			end
+		end
 	end)
 	BottomAttachment.Position = TopAttachment.Position
 	TransformationParticles.Parent = game.Workspace
 	VFX.SetParticle(TransformationParticles.Beam, true)
 	TweenService:Create(BottomAttachment, TitanConfig.Custom.TransformBeamTweenInfo, { Position = Vector3.zero }):Play()
+	--~~[[ Flash ]]~~--
+	Property.SetTable(FlashColorCorrection, ColorCorrectionData.Flash, TitanConfig.Custom.FlashColorCorrectionTweenInfo)
 	task.wait(1.25)
 	if shifter == player then
 		Satellite.Send("TransformationVFXFinished")
@@ -480,13 +531,22 @@ function Titan.CreateTransformationVFX(shifter: Player)
 			TemporaryColorCorrection:Destroy()
 		end
 	)
+	Property.SetTable(
+		FlashColorCorrection,
+		ColorCorrectionData.Default,
+		TitanConfig.Custom.ColorCorrectionTweenInfo,
+		function()
+			TemporaryColorCorrection:Destroy()
+		end
+	)
 	task.wait(6)
 	VFX.RemoveAura(SteamID)
+	TransformAyano:Clean()
 end
 
 -- This is where the code differs for each titan.
 --~~/// [[ Nape System ]] ///~~--
-function Titan._NapeEject()
+function Titan._NapeEject(dead: boolean?)
 	local isOnGround = TitanData.States.isOnGround
 	if TitanData.States.isAttacking or TitanData.States.isRoaring or not isOnGround then
 		return
@@ -507,7 +567,7 @@ function Titan._NapeEject()
 	task.wait()
 	Ayano:TrackThread(task.delay(1, function()
 		Log:print("Attempting NapeEjectAction.")
-		Satellite.Send("TitanAction", "NapeEject")
+		Satellite.Send("TitanAction", "NapeEject", dead)
 	end))
 end
 
@@ -677,6 +737,8 @@ function Titan._Roar()
 		or not TitanData.States.canRoar
 		or TitanData.States.isClimbing
 		or (TitanCombatAnimations.Roar :: AnimationTrack).IsPlaying
+		or TitanData.States.isStunned
+		or TitanData.States.isGuardingNape
 	then
 		return
 	end
@@ -706,7 +768,7 @@ end
 
 -- Bite
 function Titan._BiteGrab()
-	if TitanData.States.isDashing or not TitanData.States.canGrabDash then
+	if TitanData.States.isDashing or not TitanData.States.canGrabDash or TitanData.States.isStunned then
 		return
 	end
 
@@ -774,7 +836,7 @@ function Titan._BiteGrab()
 end
 
 function Titan._BiteAttack()
-	if TitanData.States.isDashing or not TitanData.States.canAttackDash then
+	if TitanData.States.isDashing or not TitanData.States.canAttackDash or TitanData.States.isStunned then
 		return
 	end
 
@@ -860,7 +922,7 @@ function Titan._LMB()
 	local RightIndex = 2
 	local LeftIndex = 1
 	local Arm = leftlowerarm :: BasePart
-	if isAttacking or isRoaring then
+	if isAttacking or isRoaring or TitanData.States.isStunned or TitanData.States.isGuardingNape then
 		return
 	end
 	--~~[[ Pass Checks 1 ]]~~--
@@ -897,11 +959,16 @@ end
 
 function Titan._onLiveHit(HitCharacter: Model)
 	if HitCharacter:HasTag("isTitan") then
-		Satellite.Send("TitanAction", "TitanLightHit", TitanData.Stats.AttackIndex)
+		local cancelSound = false
+		if HitCharacter:GetAttribute("isBlocking") then
+			cancelSound = true
+		end
+		Satellite.Send("TitanAction", "TitanLightHit", TitanData.Stats.AttackIndex, cancelSound)
 	end
 end
 
 function Titan._onHit(HitCharacters: { Model })
+	warn(HitCharacters)
 	if Utils.table.getDictLength(HitCharacters) > 0 then
 		Satellite.Send("TitanAction", "LightHit", HitCharacters)
 	end
@@ -927,6 +994,9 @@ end
 --~~/// [[ Nape ]] ///~~--
 function Titan._NapeGuard(bool: boolean)
 	if bool then
+		if TitanData.States.isAttacking or TitanData.States.isStunned or TitanData.States.isRoaring then
+			return
+		end
 		TitanCombatAnimations.NapeGuard:Play()
 	else
 		TitanCombatAnimations.NapeGuard:Stop()
@@ -1022,6 +1092,7 @@ function Titan._onRightStomp()
 		return
 	end
 	Satellite.Send("TitanAction", "RightStomp")
+	Titan.onRightStomp(player)
 end
 
 function Titan._onLeftStomp()
@@ -1029,6 +1100,7 @@ function Titan._onLeftStomp()
 		return
 	end
 	Satellite.Send("TitanAction", "LeftStomp")
+	Titan.onLeftStomp(player)
 end
 
 function Titan._setupMovementSFX()
@@ -1044,6 +1116,10 @@ function Titan._setupMovementSFX()
 end
 
 function Titan._updateCombatEffects()
+	TitanData.States.isStunned = character:GetAttribute("Stunned")
+	if TitanData.States.isStunned then
+		humanoid.WalkSpeed = TitanConfig.Default.Stats.Humanoid.StunnedSpeed
+	end
 	if TitanData.States.isRoaring then
 		humanoid.WalkSpeed = 0
 	end
@@ -1348,6 +1424,7 @@ function Titan.onRoar(shifter: Player, isDone: boolean)
 		Titan._effectList.Roar[shifterCharacter] = nil
 		Ayano:Clean("Roar")
 	else
+		local RoarShake = CameraShake.StartSustainedPreset("Vibration")
 		TitanSFX.Roar:Stop()
 		TitanSFX.Roar:Play()
 		if RoarAttachment then
@@ -1363,6 +1440,9 @@ function Titan.onRoar(shifter: Player, isDone: boolean)
 			end),
 			"Roar"
 		)
+		Ayano:TrackThread(task.delay(4, function()
+			RoarShake:StartFadeOut(1)
+		end))
 	end
 end
 
@@ -1451,8 +1531,12 @@ function Titan._setupGrabBehaviour(_character: Model)
 	warn(_animator)
 	if animator then
 		local grabbedTrack = _animator:LoadAnimation(Anim.new(18746713677))
-		GrabTrackerAyano:Clean()
-		GrabTrackerAyano:Connect(RunService.Heartbeat, function()
+		local conn
+		conn = RunService.Heartbeat:Connect(function()
+			if not character then
+				conn:Disconnect()
+				return
+			end
 			if character:GetAttribute("ShifterGrabbed") and not grabbedTrack.IsPlaying then
 				grabbedTrack:Play()
 			end

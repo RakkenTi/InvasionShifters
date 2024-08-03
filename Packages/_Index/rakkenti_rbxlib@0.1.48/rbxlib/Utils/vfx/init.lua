@@ -91,7 +91,7 @@ function VFX.AddAura(
 	local particleId = id or "AuraVFXParticles"
 	VFX.Auras[particleId] = {}
 	for _, basepart in ipairs(t) do
-		if basepart:IsA("BasePart") then
+		if basepart:IsA("BasePart") and basepart.Transparency ~= 1 then
 			for _, particle in ipairs(AuraParticles) do
 				local Clone = particle:Clone()
 				Clone:AddTag(IGNORE_PARTICLE_SET_TAG)

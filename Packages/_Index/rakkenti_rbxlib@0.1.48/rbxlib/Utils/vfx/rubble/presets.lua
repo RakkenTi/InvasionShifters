@@ -29,6 +29,18 @@ local CraterPresets: { [any]: Types.CraterTemplate } = {
 		FadeTweenInfo = TweenInfo.new(6, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
 		TweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut),
 	},
+	Large = {
+		Segments = 16,
+		Duration = 6,
+		MinimumRadius = 18,
+		MaximumRadius = 26,
+		MinimumSize = 11,
+		MaximumSize = 14,
+		StartOffset = 10,
+		DegreeVariance = 25,
+		FadeTweenInfo = TweenInfo.new(6, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+		TweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut),
+	},
 }
 
 --~~[[ Explosion ]]~~--
@@ -54,6 +66,17 @@ local ExplosionPresets: { [any]: Types.ExplosionTemplate } = {
 		StartOffset = -6,
 		DegreeVariance = 50,
 		Magnitude = 220,
+	},
+	Large = {
+		Segments = 20,
+		Lifetime = 14,
+		MinimumRadius = 14,
+		MaximumRadius = 20,
+		MinimumSize = 8,
+		MaximumSize = 14,
+		StartOffset = -10,
+		DegreeVariance = 60,
+		Magnitude = 350,
 	},
 }
 

@@ -83,6 +83,17 @@ function Server.SendWithin(eventname: string, pos: Vector3, radius: number, ...)
 	end
 end
 
+function Server.SendAllBut(eventname: string, playerToIgnore: Player, ...)
+	local event = Server.Retrieve(eventname) :: Instance
+
+	for _, player in Players:GetPlayers() do
+		if player == playerToIgnore then
+			continue
+		end
+		Server.Send(event, player, ...)
+	end
+end
+
 function Server.SendAll(eventname: string, ...)
 	for _, player in Players:GetPlayers() do
 		Server.Send(eventname, player, ...)

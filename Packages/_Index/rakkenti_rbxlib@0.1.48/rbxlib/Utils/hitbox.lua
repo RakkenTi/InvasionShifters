@@ -121,7 +121,8 @@ function Hitbox.Once(self: Class)
 		local hitcharacters = {}
 		for _, instance: Instance in ipairs(QueryContents) do
 			local character = instance.Parent :: Model
-			local humanoid = character:FindFirstChildOfClass("Humanoid") :: Humanoid
+			local humanoid = character:FindFirstChildOfClass("Humanoid")
+				or character.Parent:FindFirstChildOfClass("Humanoid") :: Humanoid
 			if not character or not humanoid or HitListFilter[humanoid] then
 				continue
 			end
@@ -170,9 +171,15 @@ end
 
 function Hitbox.Destroy(self: Class)
 	self:Stop()
-	table.clear(self.filter)
-	table.clear(self.hitfilter)
-	table.clear(self)
+	pcall(function()
+		table.clear(self.filter)
+	end)
+	pcall(function()
+		table.clear(self.hitfilter)
+	end)
+	pcall(function()
+		table.clear(self)
+	end)
 	self = nil
 end
 

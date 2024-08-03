@@ -1,0 +1,47 @@
+Date : 2024-08-02 16:26:29
+Directory : c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter
+Total : 16 files,  5351 codes, 300 comments, 503 blanks, all 6154 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Luau     |         16 |      5,351 |        300 |        503 |      6,154 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                    | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                       |         16 |      5,351 |        300 |        503 |      6,154 |
+| . (Files)                                                                                                               |          3 |        387 |         26 |         48 |        461 |
+| Client                                                                                                                  |          8 |      4,003 |        210 |        323 |      4,536 |
+| Client (Files)                                                                                                          |          2 |         85 |         16 |         25 |        126 |
+| Client\Attack                                                                                                           |          2 |      1,323 |         69 |         96 |      1,488 |
+| Client\Jaw                                                                                                              |          2 |      1,489 |         64 |        112 |      1,665 |
+| Client\Warhammer                                                                                                        |          2 |      1,106 |         61 |         90 |      1,257 |
+| Server                                                                                                                  |          5 |        961 |         64 |        132 |      1,157 |
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\AssetConfig.lua                  | Luau     |          7 |          3 |          5 |         15 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Attack\TitanConfig.lua    | Luau     |        156 |          2 |          7 |        165 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Attack\init.lua           | Luau     |      1,167 |         67 |         89 |      1,323 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Jaw\TitanConfig.lua       | Luau     |        146 |          2 |          8 |        156 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Jaw\init.lua              | Luau     |      1,343 |         62 |        104 |      1,509 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Warhammer\TitanConfig.lua | Luau     |        153 |          2 |          7 |        162 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Warhammer\init.lua        | Luau     |        953 |         59 |         83 |      1,095 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\genericreplicator.lua     | Luau     |         26 |          9 |         13 |         48 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\init.lua                  | Luau     |         59 |          7 |         12 |         78 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\Attack.lua                | Luau     |        271 |         17 |         34 |        322 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\Jaw.lua                   | Luau     |        350 |         17 |         43 |        410 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\Warhammer.lua             | Luau     |        278 |         18 |         35 |        331 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\init.lua                  | Luau     |         10 |          3 |          6 |         19 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\sharedfunctions.lua       | Luau     |         52 |          9 |         14 |         75 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Types.lua                        | Luau     |         56 |          0 |          4 |         60 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\init.lua                         | Luau     |        324 |         23 |         39 |        386 |
+| Total                                                                                                                   |          |      5,351 |        300 |        503 |      6,154 |
++-------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

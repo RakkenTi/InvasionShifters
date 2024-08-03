@@ -13,6 +13,7 @@ local Players = game:GetService("Players")
 
 --// Modules
 local AssetConfig = require(script.Parent.Parent.AssetConfig)
+local ShifterFunctions = require(script.Parent.sharedfunctions)
 local TitanConfig = require(script.Parent.Parent.Client.Jaw.TitanConfig)
 local rbxlib = require(ReplicatedStorage.Packages.rbxlib)
 local Satellite = rbxlib.Satellite
@@ -77,12 +78,19 @@ function JawServer.TitanLightHit(player: Player, HitIndex: number)
 end
 
 function JawServer.LightHit(player: Player, CharacterList: { Model })
+	local JawTitan = player.Character
 	if LightAttackDB[player] then
 		return
 	end
 	LightAttackDB[player] = true
-	local Damage = TitanConfig.Custom.Combat.LightAttack.Damage
 	for _, character in pairs(CharacterList) do
+		local Damage =
+			ShifterFunctions.GetDamage(TitanConfig, character, JawTitan, TitanConfig.Custom.Combat.LightAttack.Damage)
+		ShifterFunctions.ApplyStun(
+			character,
+			TitanConfig.Custom.Combat.LightAttack.StunCooldown,
+			TitanConfig.Custom.Combat.LightAttack.StunDuration
+		)
 		local humanoid = character:FindFirstChildOfClass("Humanoid")
 		if humanoid then
 			humanoid:TakeDamage(Damage)
@@ -93,17 +101,17 @@ function JawServer.LightHit(player: Player, CharacterList: { Model })
 	end)
 end
 
-function JawServer.NapeEject(player: Player)
+function JawServer.NapeEject(player: Player, dead: boolean?)
 	--~~[[ Character Destroy Behaviour Workaround]]~~--
 	local TitanModel = player.Character :: Model
 	TitanModel.Parent = nil
 	local UpperTorso = TitanModel.UpperTorso :: BasePart
 	local TitanHumanoid = TitanModel:FindFirstChild("Humanoid") :: Humanoid
 	player.Character = nil
-	player:LoadCharacter()
 	TitanModel.Parent = game.Workspace
 	UpperTorso.Anchored = true
 	TitanHumanoid:Destroy()
+	player:LoadCharacter()
 	Basepart.Fade(TitanModel, TitanConfig.Custom.TitanFadeOutTweenInfo, 0.5, function()
 		Property.BatchSet(TitanModel:GetDescendants(), { CanCollide = false }, nil, nil, { "HumanoidRootPart" })
 		TitanModel:SetAttribute("UnGrab", true)
@@ -111,7 +119,10 @@ function JawServer.NapeEject(player: Player)
 			TitanModel:Destroy()
 		end, FadeFilter)
 	end, FadeFilter)
-
+	--~~[[ Sound ]]~~--
+	local Steam = TitanSpecialSFX.Steam:Clone()
+	Steam.Parent = TitanModel.PrimaryPart
+	Steam:Play()
 	--~~[[ Main ]]~~--
 	local playerCharacter = player.Character
 	local playerHumanoid = playerCharacter:FindFirstAncestorOfClass("Humanoid")
@@ -120,17 +131,30 @@ function JawServer.NapeEject(player: Player)
 	playerCharacter:PivotTo(CFrame.new((UpperTorso.CFrame * CFrame.new(0, 0, 16)).Position))
 	playerCharacter.Parent = game.Workspace
 	Satellite.SendAll("ReplicateTitanVFX", "Jaw", "NapeEject", player)
+	if dead == true then
+		playerHumanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, true)
+		Satellite.Send("ReplicateTitanVFX", player, "General", "Ragdoll")
+	end
 end
 
 function JawServer.BiteVFX(player: Player)
 	Satellite.SendAll("ReplicateTitanVFX", "Jaw", "BiteVFX", player)
 end
 
-function JawServer.BiteAttack(_, hitlist: { Model })
+function JawServer.BiteAttack(player: Player, hitlist: { Model })
+	local JawTitan = player.Character
 	for _, character in pairs(hitlist) do
 		local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+		local Damage =
+			ShifterFunctions.GetDamage(TitanConfig, character, JawTitan, TitanConfig.Custom.Combat.Bite.BiteDamage)
+		ShifterFunctions.ApplyStun(
+			character,
+			TitanConfig.Custom.Combat.Bite.StunCooldown,
+			TitanConfig.Custom.Combat.Bite.StunDuration
+		)
 		if humanoid then
-			humanoid:TakeDamage(TitanConfig.Custom.Combat.Bite.BiteDamage)
+			humanoid:TakeDamage(Damage)
 		end
 	end
 end
@@ -233,6 +257,7 @@ function JawServer.Died(player: Player)
 	Humanoid:Destroy()
 	HumanoidRootPart.Anchored = true
 	VFX.AddAura(MinimalSteamAura, TitanModel, SteamID)
+	Steam.Parent = HumanoidRootPart
 	Steam:Play()
 	Basepart.Fade(TitanModel, TitanConfig.Custom.TitanFadeOutTweenInfo, 0.5, function()
 		Property.BatchSet(TitanModel:GetDescendants(), { CanCollide = false }, nil, nil, { "HumanoidRootPart" })
@@ -279,11 +304,11 @@ end
 
 --~~[[ Stomps ]]~~--
 function JawServer.LeftStomp(player: Player)
-	Satellite.SendAll("ReplicateTitanVFX", "Jaw", "LeftStomp", player)
+	Satellite.SendAllBut("ReplicateTitanVFX", player, "Jaw", "LeftStomp", player)
 end
 
 function JawServer.RightStomp(player: Player)
-	Satellite.SendAll("ReplicateTitanVFX", "Jaw", "RightStomp", player)
+	Satellite.SendAll("ReplicateTitanVFX", player, "Jaw", "RightStomp", player)
 end
 
 -- Limb Hit Handlers
@@ -315,7 +340,7 @@ function JawServer._onArmHit(playerWhoHit: Player, Limb: BasePart, shifter: Play
 		Limb:SetAttribute("ArmHealth", ArmHealth - 1)
 		return
 	end
-	Limb:SetAttribute("ArmHealth", 20)
+	Limb:SetAttribute("ArmHealth", TitanConfig.Custom.Health.Arm)
 	local TitanModel = Limb.Parent
 		and Limb.Parent.Parent
 		and Limb.Parent.Parent:IsA("Model")

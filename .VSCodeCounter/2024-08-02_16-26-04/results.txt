@@ -1,0 +1,130 @@
+Date : 2024-08-02 16:26:04
+Directory : c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters
+Total : 68 files,  11078 codes, 868 comments, 1720 blanks, all 13666 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Luau     |         61 |     11,003 |        865 |      1,708 |     13,576 |
+| JSON     |          2 |         51 |          0 |          8 |         59 |
+| TOML     |          4 |         19 |          3 |          2 |         24 |
+| Markdown |          1 |          5 |          0 |          2 |          7 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                                     | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                                        |         68 |     11,078 |        868 |      1,720 |     13,666 |
+| . (Files)                                                                                                                                                |          6 |         68 |          3 |         12 |         83 |
+| Packages                                                                                                                                                 |         45 |      5,659 |        557 |      1,204 |      7,420 |
+| Packages (Files)                                                                                                                                         |          1 |          1 |          0 |          1 |          2 |
+| Packages\_Index                                                                                                                                          |         44 |      5,658 |        557 |      1,203 |      7,418 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42                                                                                                                   |         44 |      5,658 |        557 |      1,203 |      7,418 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib                                                                                                            |         44 |      5,658 |        557 |      1,203 |      7,418 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib (Files)                                                                                                    |          5 |        166 |         67 |         45 |        278 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Data                                                                                                       |          3 |      2,241 |        228 |        378 |      2,847 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Dependencies                                                                                               |          3 |        314 |         36 |         90 |        440 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Dependencies\CameraShaker                                                                                  |          3 |        314 |         36 |         90 |        440 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Satellite                                                                                                  |          3 |        175 |         17 |         65 |        257 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui                                                                                                   |          6 |      1,390 |        101 |        310 |      1,801 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui (Files)                                                                                           |          2 |      1,183 |        101 |        246 |      1,530 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\Components                                                                                        |          1 |          0 |          0 |          1 |          1 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\Presets                                                                                           |          3 |        207 |          0 |         63 |        270 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils                                                                                                      |         24 |      1,372 |        108 |        315 |      1,795 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils (Files)                                                                                              |         17 |        896 |         71 |        231 |      1,198 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\num                                                                                                  |          3 |         91 |          7 |         40 |        138 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\num (Files)                                                                                          |          1 |          7 |          1 |          4 |         12 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\num\format                                                                                           |          1 |         42 |          2 |         16 |         60 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\num\tween                                                                                            |          1 |         42 |          4 |         20 |         66 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vfx                                                                                                  |          4 |        385 |         30 |         44 |        459 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vfx (Files)                                                                                          |          1 |        127 |          5 |         17 |        149 |
+| Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vfx\rubble                                                                                           |          3 |        258 |         25 |         27 |        310 |
+| src                                                                                                                                                      |         17 |      5,351 |        308 |        504 |      6,163 |
+| src (Files)                                                                                                                                              |          1 |          0 |          8 |          1 |          9 |
+| src\ReplicatedStorage                                                                                                                                    |         16 |      5,351 |        300 |        503 |      6,154 |
+| src\ReplicatedStorage\Shifter                                                                                                                            |         16 |      5,351 |        300 |        503 |      6,154 |
+| src\ReplicatedStorage\Shifter (Files)                                                                                                                    |          3 |        387 |         26 |         48 |        461 |
+| src\ReplicatedStorage\Shifter\Client                                                                                                                     |          8 |      4,003 |        210 |        323 |      4,536 |
+| src\ReplicatedStorage\Shifter\Client (Files)                                                                                                             |          2 |         85 |         16 |         25 |        126 |
+| src\ReplicatedStorage\Shifter\Client\Attack                                                                                                              |          2 |      1,323 |         69 |         96 |      1,488 |
+| src\ReplicatedStorage\Shifter\Client\Jaw                                                                                                                 |          2 |      1,489 |         64 |        112 |      1,665 |
+| src\ReplicatedStorage\Shifter\Client\Warhammer                                                                                                           |          2 |      1,106 |         61 |         90 |      1,257 |
+| src\ReplicatedStorage\Shifter\Server                                                                                                                     |          5 |        961 |         64 |        132 |      1,157 |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                                                 | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Currency.lua                                      | Luau     |         35 |          8 |         19 |         62 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Data\DataTemplate.lua                             | Luau     |         92 |         25 |         15 |        132 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Data\ProfileService.lua                           | Luau     |      1,979 |        178 |        302 |      2,459 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Data\init.lua                                     | Luau     |        170 |         25 |         61 |        256 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Dependencies\CameraShaker\CameraShakeInstance.lua | Luau     |        113 |          5 |         30 |        148 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Dependencies\CameraShaker\CameraShakePresets.lua  | Luau     |         61 |         19 |         14 |         94 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Dependencies\CameraShaker\init.lua                | Luau     |        140 |         12 |         46 |        198 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\GoodSignal.lua                                    | Luau     |        105 |         58 |         18 |        181 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Satellite\Client.lua                              | Luau     |         69 |          7 |         25 |        101 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Satellite\Server.lua                              | Luau     |         84 |          7 |         29 |        120 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Satellite\init.lua                                | Luau     |         22 |          3 |         11 |         36 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\Components\init.lua                      | Luau     |          0 |          0 |          1 |          1 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\Presets\Minima.lua                       | Luau     |        119 |          0 |         35 |        154 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\Presets\Taika.lua                        | Luau     |         84 |          0 |         26 |        110 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\Presets\init.lua                         | Luau     |          4 |          0 |          2 |          6 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\_state.lua                               | Luau     |         21 |          5 |         10 |         36 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\TaikaGui\init.lua                                 | Luau     |      1,162 |         96 |        236 |      1,494 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Types.lua                                         | Luau     |          3 |          0 |          1 |          4 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\anim.lua                                    | Luau     |         10 |          2 |          6 |         18 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\ayano.lua                                   | Luau     |        184 |          9 |         23 |        216 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\basepart.lua                                | Luau     |         53 |          3 |         11 |         67 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\camerashake.lua                             | Luau     |         52 |         10 |         18 |         80 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\gui.lua                                     | Luau     |         14 |          3 |          9 |         26 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\hitbox.lua                                  | Luau     |        154 |          8 |         25 |        187 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\init.lua                                    | Luau     |         18 |          1 |          1 |         20 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\loader.lua                                  | Luau     |         32 |          4 |         13 |         49 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\log.lua                                     | Luau     |        109 |          3 |         27 |        139 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\num\format\init.lua                         | Luau     |         42 |          2 |         16 |         60 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\num\init.lua                                | Luau     |          7 |          1 |          4 |         12 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\num\tween\init.lua                          | Luau     |         42 |          4 |         20 |         66 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\players.lua                                 | Luau     |         30 |          3 |         15 |         48 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\property.lua                                | Luau     |         54 |          4 |          9 |         67 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\reference.lua                               | Luau     |         34 |          2 |          8 |         44 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\sound.lua                                   | Luau     |         20 |          3 |          8 |         31 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\stopwatch.lua                               | Luau     |         12 |          1 |          7 |         20 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\table.lua                                   | Luau     |         50 |          3 |         18 |         71 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\uis.lua                                     | Luau     |         18 |          4 |          7 |         29 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vacuum[retired].lua                         | Luau     |         52 |          8 |         26 |         86 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vfx\init.lua                                | Luau     |        127 |          5 |         17 |        149 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vfx\rubble\init.lua                         | Luau     |        156 |         19 |         18 |        193 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vfx\rubble\presets.lua                      | Luau     |         78 |          5 |          5 |         88 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\Utils\vfx\rubble\types.lua                        | Luau     |         24 |          1 |          4 |         29 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\init.lua                                          | Luau     |         16 |          1 |          7 |         24 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\_Index\rakkenti_rbxlib@0.1.42\rbxlib\wally.toml                                        | TOML     |          7 |          0 |          0 |          7 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\Packages\rbxlib.lua                                                                             | Luau     |          1 |          0 |          1 |          2 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\README.md                                                                                       | Markdown |          5 |          0 |          2 |          7 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\aftman.toml                                                                                     | TOML     |          4 |          3 |          1 |          8 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\default.project.json                                                                            | JSON     |         50 |          0 |          8 |         58 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\selene.toml                                                                                     | TOML     |          1 |          0 |          0 |          1 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\sourcemap.json                                                                                  | JSON     |          1 |          0 |          0 |          1 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\AssetConfig.lua                                                   | Luau     |          7 |          3 |          5 |         15 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Attack\TitanConfig.lua                                     | Luau     |        156 |          2 |          7 |        165 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Attack\init.lua                                            | Luau     |      1,167 |         67 |         89 |      1,323 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Jaw\TitanConfig.lua                                        | Luau     |        146 |          2 |          8 |        156 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Jaw\init.lua                                               | Luau     |      1,343 |         62 |        104 |      1,509 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Warhammer\TitanConfig.lua                                  | Luau     |        153 |          2 |          7 |        162 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\Warhammer\init.lua                                         | Luau     |        953 |         59 |         83 |      1,095 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\genericreplicator.lua                                      | Luau     |         26 |          9 |         13 |         48 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Client\init.lua                                                   | Luau     |         59 |          7 |         12 |         78 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\Attack.lua                                                 | Luau     |        271 |         17 |         34 |        322 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\Jaw.lua                                                    | Luau     |        350 |         17 |         43 |        410 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\Warhammer.lua                                              | Luau     |        278 |         18 |         35 |        331 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\init.lua                                                   | Luau     |         10 |          3 |          6 |         19 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Server\sharedfunctions.lua                                        | Luau     |         52 |          9 |         14 |         75 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\Types.lua                                                         | Luau     |         56 |          0 |          4 |         60 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\ReplicatedStorage\Shifter\init.lua                                                          | Luau     |        324 |         23 |         39 |        386 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\src\readme.server.lua                                                                           | Luau     |          0 |          8 |          1 |          9 |
+| c:\Users\Mark Martinez\Documents\GitHub\InvasionShifters\wally.toml                                                                                      | TOML     |          7 |          0 |          1 |          8 |
+| Total                                                                                                                                                    |          |     11,078 |        868 |      1,720 |     13,666 |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
